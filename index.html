@@ -9,15 +9,13 @@
 <main>
 	<h1>JavaScript Video Controls</h1>
 	<div class = "options">
-		<button  id = "play">Play Video</button>
-		<button  id = "pause">Pause Video</button>
-		<button  id = "slower">Slow Down</button>
-		<button  id = "faster">Speed Up</button>
-		<button  id = "skip">Skip Ahead</button>
+		<button  onclick = "playvid()" id = "play">Play Video</button>
+		<button  onclick = "pausevid()" id = "pause">Pause Video</button>
+		<button  onclick = "slowvid()" id = "slower">Slow Down</button>
+		<button  onclick = "speedupvid()" id = "faster">Speed Up</button>
+		<button  onclick = "skipvid()" id = "skip">Skip Ahead</button>
 	</div>
-
 	<figure>
-
 		<video class = "video" 
 			autoplay="false" 
 			width="640" 
@@ -31,7 +29,7 @@
 		</video>
 		<figcaption>[The sound of the Michigan Marching Band]</figcaption>
 		</figure> 
-	<button id="mute">Mute</button><br>
+	<button onclick = "mutevid()" id="mute">Mute</button><br>
 
 	<label for="slider">Volume</label>: 0 <input type="range" id="slider" min="0" max="100" value="100" step="10"> 100%<br>
 	<div>Volume is: <span id = "volume"> </span><br><br></div>
@@ -42,5 +40,72 @@
 	<p>Video courtesy of Allison Sweet.</p>
 
 </main>
+
+<script>
+	var vid = document.getElementById("player1")
+	var vidVolume = document.querySelector("#volume")
+	var vidMute = document.querySelector("#mute")
+	var slider = document.getElementById("#slider")
+
+	function playvid(){
+		vid.play()
+		vidVolume.innerHTML = vid.volume *100 + "%";
+	}
+	function pausevid() {
+		vid.pause();
+	}
+
+	function slowvid() {
+		vid.playbackRate = vid.playbackRate - 0.05
+		console.log(vid.playbackRate + "%")
+		console.log("New speed")
+	}
+
+	function speedupvid() {
+		vid.playbackRate = vid.playbackRate + 0.05
+		console.log(vid.playbackRate + "%")
+		console.log("New speed")
+
+	}
+
+	function skipvid() {
+		if (vid.currentTime == vid.duration) { 
+			vid.currentTime = 0;
+			vid.play()
+		} else { 
+			vid.currentTime = vid.currentTime + 15;
+		}
+			console.log(vid.currentTime)
+			console.log("Current Location")
+	}
+
+	// function mutevid() {
+	// 	if (vidMute == "Mute") {
+	// 		vid.muted = true
+	// 		vidMute.innerHTML = "Unmute"
+	// 	} else {
+	// 		vid.muted = false
+	// 		vidMute.innerHTML = "Mute"
+	// 	}	
+	// }
+
+	function mutevid() {
+		if (vidMute.innerHTML == "Mute") {
+			vid.muted = true;
+			vidMute.innerHTML = "Unmute"
+		} else {
+			vid.muted = false;
+			vidMute.innerHTML = "Mute"
+		}
+	}
+
+	// vidVolume.innerHTML = slider.value + "%";
+
+	// slider.oninput = function() {
+	// 	vidVolume.innerHTML = this.value;
+	// }
+	
+
+</script>
 </body> 
 </html>
