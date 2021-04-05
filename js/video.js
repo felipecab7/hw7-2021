@@ -92,21 +92,3 @@ document.querySelector("#orig").addEventListener("click", function (){
 	console.log("Original")
 	video.classList.remove("oldSchool")
 });
-
-
-
-// function playvid(){
-// 	vid.play()
-// 	vidVolume.innerHTML = vid.volume *100 + "%";
-// }
-
-
-
-
-
-
-// vidVolume.innerHTML = slider.value + "%";
-
-// slider.oninput = function() {
-// 	vidVolume.innerHTML = this.value;
-// }
